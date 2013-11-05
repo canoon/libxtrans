@@ -2402,6 +2402,7 @@ TRANS(SocketUNIXClose) (XtransConnInfo ciptr)
     if (ciptr->flags
        && sockname
        && sockname->sun_family == AF_UNIX
+       && sockname->addrlen > sizeof(sockname->sun_family)
        && sockname->sun_path[0])
     {
 	if (!(ciptr->flags & TRANS_NOUNLINK
